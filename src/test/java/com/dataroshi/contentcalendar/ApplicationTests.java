@@ -1,4 +1,4 @@
-package com.dataroshi.content_calendar;
+package com.dataroshi.contentcalendar;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
