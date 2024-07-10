@@ -11,11 +11,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Repository
 public class ContentCollectionRepository {
 
     private final List<Content> contents = new ArrayList<>();
+    private final AtomicInteger counter = new AtomicInteger();
 
     public List<Content> findAll() {
         return contents;
@@ -28,9 +30,28 @@ public class ContentCollectionRepository {
                 .findAny();
     }
 
+    public void save(Content content) {
+        if (content.id() != null) {
+            contents.removeIf(c -> c.id().equals(content.id()));
+            contents.add(content);
+        } else {
+            contents.add(new Content(content, counter.incrementAndGet()));
+        }
+    }
+
+    public boolean existsById(Integer id) {
+        return contents.stream()
+                .filter(c -> c.id() != null)
+                .anyMatch(c -> c.id().equals(id));
+    }
+
+    public void deleteById(Integer id) {
+        contents.removeIf(c -> c.id().equals(id));
+    }
+
     @PostConstruct
     private void onInit() {
-        var content = new Content(1,
+        var content = new Content(counter.incrementAndGet(),
                 "Blog Post 1",
                 "Blog post 1",
                 Status.IDEA,
