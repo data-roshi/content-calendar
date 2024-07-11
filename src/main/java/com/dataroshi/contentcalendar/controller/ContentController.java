@@ -2,7 +2,7 @@ package com.dataroshi.contentcalendar.controller;
 
 import com.dataroshi.contentcalendar.exception.ContentNotFoundException;
 import com.dataroshi.contentcalendar.model.Content;
-import com.dataroshi.contentcalendar.repository.ContentCollectionRepository;
+import com.dataroshi.contentcalendar.repository.ContentRepository;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,25 +17,24 @@ import java.util.List;
 @CrossOrigin
 public class ContentController {
 
-
     private static final Logger LOG = LoggerFactory.getLogger(ContentController.class);
 
-    private final ContentCollectionRepository contentCollectionRepository;
+    private final ContentRepository contentRepository;
 
-    public ContentController(ContentCollectionRepository contentCollectionRepository) {
-        this.contentCollectionRepository = contentCollectionRepository;
+    public ContentController(ContentRepository contentRepository) {
+        this.contentRepository = contentRepository;
     }
 
     @GetMapping("")
     public List<Content> findAll() {
         LOG.info("Find all contents");
-        return contentCollectionRepository.findAll();
+        return contentRepository.findAll();
     }
 
     @GetMapping("/{id}")
     public Content findById(@PathVariable Integer id) {
         LOG.info("Find content by id: {}", id);
-        return contentCollectionRepository.findById(id)
+        return contentRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
                         String.format("Content with id %s not found", id)));
     }
@@ -44,24 +43,24 @@ public class ContentController {
     @PostMapping("")
     public void create(@Valid @RequestBody Content content) {
         LOG.info("Creating new content {}", content);
-        contentCollectionRepository.save(content);
+        contentRepository.save(content);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/{id}")
     public void update(@RequestBody Content content, @PathVariable Integer id) {
         LOG.info("Updating content with id {}", id);
-        if (!contentCollectionRepository.existsById(id)) {
+        if (!contentRepository.existsById(id)) {
             throw new ContentNotFoundException(String.format("Content with id %s not found", id));
         }
 
-        contentCollectionRepository.save(content);
+        contentRepository.save(content);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable Integer id) {
         LOG.info("Deleting content with id {}", id);
-        contentCollectionRepository.deleteById(id);
+        contentRepository.deleteById(id);
     }
 }

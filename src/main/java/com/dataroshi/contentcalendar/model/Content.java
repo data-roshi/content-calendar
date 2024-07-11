@@ -2,10 +2,14 @@ package com.dataroshi.contentcalendar.model;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
 
+@Table(name = "content")
 public record Content(
+        @Id
         Integer id,
         @NotBlank(message = "title element cannot be blank")
         String title,
