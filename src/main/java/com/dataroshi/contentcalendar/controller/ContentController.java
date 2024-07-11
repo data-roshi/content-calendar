@@ -63,4 +63,16 @@ public class ContentController {
         LOG.info("Deleting content with id {}", id);
         contentRepository.deleteById(id);
     }
+
+    @GetMapping("/filter/title/{keyword}")
+    public List<Content> findByTitle(@PathVariable String keyword) {
+        LOG.info("Find content by title: {}", keyword);
+        return contentRepository.findAllByTitleContainsIgnoreCase(keyword);
+    }
+
+    @GetMapping("/filter/status/{status}")
+    public List<Content> findByStatus(@PathVariable String status) {
+        LOG.info("Find content by status: {}", status);
+        return contentRepository.findAllByStatus(status);
+    }
 }
