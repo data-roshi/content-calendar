@@ -1,4 +1,5 @@
-CREATE TABLE IF NOT EXISTS Content (
+-- unquoted indentifiers are treated as case insensitive and creates CONTENT table, postgres does the opposite
+CREATE TABLE IF NOT EXISTS content (
     id INTEGER AUTO_INCREMENT,
     title varchar(255) NOT NULL,
     desc text,
@@ -10,5 +11,5 @@ CREATE TABLE IF NOT EXISTS Content (
     PRIMARY KEY (id)
 );
 
-INSERT INTO Content (title, desc, status, content_type, date_created)
+INSERT INTO content (title, desc, status, content_type, date_created)
 VALUES ('my post', 'my post', 'IDEA', 'ARTICLE', current_timestamp);

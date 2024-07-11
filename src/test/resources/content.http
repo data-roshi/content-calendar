@@ -9,6 +9,7 @@ POST http://localhost:8080/api/content
 Content-Type: application/json
 
 {
+  "title": "another blog post",
   "desc": "desc another blog post",
   "status": "IN_PROGRESS",
   "contentType": "ARTICLE",
