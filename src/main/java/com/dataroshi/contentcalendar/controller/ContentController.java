@@ -3,6 +3,7 @@ package com.dataroshi.contentcalendar.controller;
 import com.dataroshi.contentcalendar.exception.ContentNotFoundException;
 import com.dataroshi.contentcalendar.model.Content;
 import com.dataroshi.contentcalendar.repository.ContentCollectionRepository;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -13,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/content")
+@CrossOrigin
 public class ContentController {
 
 
@@ -40,7 +42,7 @@ public class ContentController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("")
-    public void create(@RequestBody Content content) {
+    public void create(@Valid @RequestBody Content content) {
         LOG.info("Creating new content {}", content);
         contentCollectionRepository.save(content);
     }
@@ -59,6 +61,7 @@ public class ContentController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable Integer id) {
+        LOG.info("Deleting content with id {}", id);
         contentCollectionRepository.deleteById(id);
     }
 }

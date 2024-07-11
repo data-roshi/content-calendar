@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -25,7 +24,7 @@ public class ContentCollectionRepository {
 
     public Optional<Content> findById(Integer id) {
         return contents.stream()
-                .filter(Objects::nonNull)
+                .filter(c -> c.id() != null)
                 .filter(c -> c.id().equals(id))
                 .findAny();
     }

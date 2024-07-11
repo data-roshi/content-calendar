@@ -1,12 +1,16 @@
 package com.dataroshi.contentcalendar.model;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 public record Content(
         Integer id,
+        @NotBlank(message = "title element cannot be blank")
         String title,
         String desc,
+        @NotNull
         Status status,
         Type contentType,
         LocalDateTime dateCreated,
