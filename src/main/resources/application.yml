@@ -1,0 +1,11 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: content-calendar
+  datasource:
+    generate-unique-name: false
+    name: content-db
+
+  h2.console.enabled: true
