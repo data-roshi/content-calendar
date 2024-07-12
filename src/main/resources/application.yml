@@ -16,8 +16,18 @@ logging:
   level:
     org.springframework.jdbc: DEBUG
 
+
 cc:
   welcome1: "welcome message 1"
   welcome3: "Not the default value welcome"
   city1: Tokyo
   city2: Kyoto
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
