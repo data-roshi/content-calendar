@@ -5,10 +5,12 @@ spring:
   application:
     name: content-calendar
   datasource:
-    generate-unique-name: false
-    name: content-db
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: password
 
-  h2.console.enabled: true
+  sql.init.mode: always
+
   profiles:
     active: dev
 
