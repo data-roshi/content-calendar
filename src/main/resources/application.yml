@@ -9,6 +9,8 @@ spring:
     name: content-db
 
   h2.console.enabled: true
+  profiles:
+    active: dev
 
 logging:
   level:
@@ -17,3 +19,5 @@ logging:
 cc:
   welcome1: "welcome message 1"
   welcome3: "Not the default value welcome"
+  city1: Tokyo
+  city2: Kyoto

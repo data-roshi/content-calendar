@@ -1,0 +1,3 @@
+cc:
+  welcome1: "PRODUCTION welcome message 1"
+  welcome3: "Not the default PRODUCTION value welcome"
