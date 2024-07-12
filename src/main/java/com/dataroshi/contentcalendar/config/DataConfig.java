@@ -18,8 +18,8 @@ public class DataConfig {
     public CommandLineRunner commandLineRunner(ContentRepository contentRepository) {
         return args -> {
             var content = new Content(null,
-                    "Blog Post 1",
-                    "Blog post 1",
+                    "Blog Post 2",
+                    "Blog post 2",
                     Status.IDEA,
                     Type.ARTICLE,
                     LocalDateTime.now(),

@@ -13,3 +13,7 @@ spring:
 logging:
   level:
     org.springframework.jdbc: DEBUG
+
+cc:
+  welcome1: "welcome message 1"
+  welcome3: "Not the default value welcome"
